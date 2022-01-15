@@ -1,8 +1,7 @@
 # 32-bit Processor Design
  
-**Computer Organization and Architecture Laboratory | Autumn 2021 | Mini Project**
-<br>
-*Shrirang P. Deshmukh | 19CS01065*
+### Computer Organization and Architecture Laboratory | Autumn 2021 | Mini Project
+### *Shrirang P. Deshmukh | 19CS01065*
 
 ## Contents
 
@@ -12,6 +11,7 @@
  4. [Instruction Encoding](#instruction-encoding)
  5. [Control Signals](#control-signals)
  6. [Program Conversion Examples](#program-conversion-examples)
+ 7. [Usage Instructions](#usage-instructions)
  
 
 ## Problem Statement
@@ -92,7 +92,7 @@ Designing of a 32-bit RISC processor that will support the following assembly in
 
 ### 5. **Control Unit**
 
-<img src="./images/CU.png" style="width:80%; height:70%;"/>
+<img src="./images/CU.png" style="width:80%; height:50%;"/>
 
 - Control Unit takes input from about clock and current instruction and depending upon current stage, it gives appropriate control signals to other units.
 - Stages are managed using a counter, which goes from 0 to 4 in round robin manner.
@@ -117,8 +117,6 @@ Designing of a 32-bit RISC processor that will support the following assembly in
 - ALU supports four arithmetic operations for 32-bit numbers addition, subtraction, bitwise AND and bitwise OR.
 - ALU supports passing one of the values directly to the output without any operation in case of MOVE and MVI instructions.
 - The output is decided by using a multiplexer.
-
-![](RackMultipart20220115-4-1lnepy2_html_350cdf059c79810a.png)
 
 
 ## Instruction Encoding
@@ -241,7 +239,7 @@ No Source 2 value in this case, keep the value of source 2 as 0.
 
 Destination is not the destination in this case, its is actually the source, the encoding is just to follow the pattern till now.
 
-** Note** 
+**Note** 
 1. In case of LOAD and STORE operations, the address is being calculated with R2 + X.
 2. The address line is of 16-bits only, proper inputs should be given to make sure that the output does not exceeds 16-bits.
 
@@ -284,20 +282,24 @@ Assuming R2 has the base address, X = 10, Y = 11, Z = 12 and Immediate = 16
 | 0004 | Store R1, Z(R2); Stores result in A | 6120000C |
 | 0005 | HLT; Halts execution | C0000000 |
 
+Memory image of this program assuming R2 having value 0100, is [here](./memory-images/p1).
+
 ### **A = (B OR C) AND Immediate**
 
-Assuming R2 has the base address, X = 20, Y = 21, Z = 22 and Immediate = 30
+Assuming R2 has the base address, X = 10, Y = 11, Z = 12 and Immediate = 30
 
 | **Address** | **Machine Code** | **Assembly Code** |
 | --- | --- | --- |
-| 0000 | Load R1, X(R2); Loads B | 51200014 |
+| 0000 | Load R1, X(R2); Loads B | 5120000A |
 | 0001 | Move R3, R1; Moves R1 to R3 | 43100000 |
-| 0002 | Loads R1, Y(R2); Loads C | 51200015 |
+| 0002 | Loads R1, Y(R2); Loads C | 5120000B |
 | 0003 | Move R4, R1; Moves R1 to R4 | 44100000 |
 | 0004 | OR R1, R3, R4; Performs OR of R3 and R4 | 31340000 |
 | 0005 | ANI R5, R1, #Immediate; Performs AND with Immediate | A510001E |
-| 0006 | Store R5, Z(R2); Stores the result in A | 65200016 |
+| 0006 | Store R5, Z(R2); Stores the result in A | 6520000C |
 | 0007 | HLT; Halts execution | C0000000 |
+
+Memory image of this program assuming R2 having value 0110, is [here](./memory-images/p2).
 
 
 ## Usage Instructions
@@ -312,3 +314,9 @@ Assuming R2 has the base address, X = 20, Y = 21, Z = 22 and Immediate = 30
 6.	Enable the ticks in Logisim to run the machine program. The program finishes execution once it receives the HLT instruction.
 
 **Note**: Make sure the instructions and data fed to the memory and registers is in the hexadecimal format.
+
+<hr/>
+
+
+
+

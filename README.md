@@ -60,18 +60,20 @@ Designing of a 32-bit RISC processor that will support the following assembly in
 
 ### 1. **Processor Pipeline**
 
-![](RackMultipart20220115-4-1lnepy2_html_1ed41597042399da.png)
+<img src="./images/5Stage.png" style="width:80%; height:100%;"/>
+
 
 ### 2. **Fetch Unit**
 
-![](RackMultipart20220115-4-1lnepy2_html_44940226ee68bc35.png)
+
+<img src="./images/fetch1.png" style="width:80%; height:100%;"/>
 
 - A 32-bit register called as the Program Counter. PC has the address of memory location which has the next instruction.
 - An adder to increment the value of PC by 1, to get to the next instruction address.
 
 ### 3. **Memory Unit**
 
-![](RackMultipart20220115-4-1lnepy2_html_40d4c39f804e1db9.png)
+<img src="./images/memory.png" style="width:80%; height:100%;"/>
 
 - 16 (Address-line) X 32 (Data-bit) RAM, to store instructions and data.
 - A 1-bit select multiplexer, Memory MUX which chooses the input address to the memory (i.e. either from the ALU or PC), the MUX is always enabled it shifts to ALU input only when Select is set to 1.
@@ -79,18 +81,18 @@ Designing of a 32-bit RISC processor that will support the following assembly in
 
 ### 4. **Decode Unit**
 
-![](RackMultipart20220115-4-1lnepy2_html_250f47c68256d9f6.png)
+<img src="./images/decode.png" style="width:80%; height:100%;"/>
 
 - Instruction Register which stores the instruction received from the memory and splits to various parts according to the encoding scheme.
 - Opcode Decoder for selecting the instruction based on Opcode from the instruction.
 
 #### **Instruction Register ( Internal Circuit )**
 
-![](RackMultipart20220115-4-1lnepy2_html_a677d29b7231492c.png)
+<img src="./images/IR.png" style="width:80%; height:100%;"/>
 
 ### 5. **Control Unit**
 
-![](RackMultipart20220115-4-1lnepy2_html_1507797dbb643fff.png)
+<img src="./images/CU.png" style="width:80%; height:70%;"/>
 
 - Control Unit takes input from about clock and current instruction and depending upon current stage, it gives appropriate control signals to other units.
 - Stages are managed using a counter, which goes from 0 to 4 in round robin manner.
@@ -99,16 +101,18 @@ Designing of a 32-bit RISC processor that will support the following assembly in
 
 #### **Control Unit (Internal Circuit)**
 
-![](RackMultipart20220115-4-1lnepy2_html_b0ae0f92fd23a91a.png)
+<img src="./images/control.png" style="width:80%; height:100%;"/>
 
 ### 6. **Register File (Internal Circuit)**
 
-![](RackMultipart20220115-4-1lnepy2_html_6c8c01c92f3ae3e7.png)
+<img src="./images/RF.png" style="width:80%; height:100%;"/>
 
 - Register File has two multiplexers for send required data to two SPRs RA and RB each, and one demultiplexer for writing back data to the required register.
 - One MUX k/as STORE MUX to handle the special case for STORE operation.
 
 ### 7. **ALU (Internal Circuit)**
+
+<img src="./images/alu.png" style="width:80%; height:100%;"/>
 
 - ALU supports four arithmetic operations for 32-bit numbers addition, subtraction, bitwise AND and bitwise OR.
 - ALU supports passing one of the values directly to the output without any operation in case of MOVE and MVI instructions.
